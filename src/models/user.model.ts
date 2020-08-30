@@ -1,5 +1,7 @@
-import { Table, Model, AutoIncrement, PrimaryKey, Column, AllowNull, NotEmpty,DataType, HasMany } from 'sequelize-typescript'
+import { Table, Model, AutoIncrement, PrimaryKey, Column, AllowNull, NotEmpty, DataType, BelongsTo, ForeignKey, BelongsToMany, HasMany } from 'sequelize-typescript';
 import Pet from './pet.model';
+import UserPet from './UserPet.model';
+
 
 
 @Table({tableName:'user'})
@@ -29,9 +31,11 @@ export default class User extends Model<User>{
     @NotEmpty
     @Column(DataType.STRING)
     email!: string
+    
+    
 
-    @HasMany(() => Pet)
-    pets?: Pet[];
+    @HasMany(() => UserPet)
+    pets?: UserPet[]
 
 }
 

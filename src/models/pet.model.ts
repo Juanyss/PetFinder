@@ -1,5 +1,6 @@
-import { Table, Model, AutoIncrement, PrimaryKey, Column, AllowNull, NotEmpty,DataType, BelongsTo, HasMany, ForeignKey } from 'sequelize-typescript'
+import { Table, Model, AutoIncrement, PrimaryKey, Column, AllowNull, NotEmpty,DataType, BelongsTo, HasMany, ForeignKey, BelongsToMany } from 'sequelize-typescript'
 import User from './user.model';
+import UserPet from './UserPet.model';
 
 
 @Table({tableName:'pet'})
@@ -18,12 +19,12 @@ export default class Pet extends Model<Pet>{
     @NotEmpty
     @Column(DataType.STRING)    
     race!: string;
+    
 
-    @ForeignKey(() => User)
-    ownerId!: User;
+    @HasMany(() => UserPet)
+    owners?: UserPet[]
 
-    @BelongsTo(() => User)
-    owners!: User
+
 
 
 }
